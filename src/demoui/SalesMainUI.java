@@ -16,6 +16,8 @@ public class SalesMainUI extends javax.swing.JPanel {
      */
     public SalesMainUI() {
         initComponents();
+        salesmanCardPanel.setBounds(160, 65, 800, 600);
+        add(salesmanCardPanel);
     }
 
     /**
@@ -132,35 +134,35 @@ public class SalesMainUI extends javax.swing.JPanel {
 
     private void salesReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesReturnActionPerformed
         // TODO add your handling code here:
-
+        salesmanCardPanel.changeTosalesReturnUI();
         this.repaint();
     }//GEN-LAST:event_salesReturnActionPerformed
 
     private void salesManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesManagerActionPerformed
         // TODO add your handling code here:
-
+        salesmanCardPanel.changeTosalesUI();
         this.repaint();
     }//GEN-LAST:event_salesManagerActionPerformed
 
     private void importReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importReturnActionPerformed
         // TODO add your handling code here:
-        //salesmanCardPanel.changeToimportReturnUI();
+        salesmanCardPanel.changeToimportReturnUI();
         this.repaint();
     }//GEN-LAST:event_importReturnActionPerformed
 
     private void clientManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientManagerActionPerformed
         // TODO add your handling code here:
-        //salesmanCardPanel.changeToclientUI();
+        salesmanCardPanel.changeToclientUI();
         this.repaint();
     }//GEN-LAST:event_clientManagerActionPerformed
 
     private void importManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importManagerActionPerformed
         // TODO add your handling code here:
-        //salesmanCardPanel.changeToimportUI();
+        salesmanCardPanel.changeToimportUI();
         this.repaint();
     }//GEN-LAST:event_importManagerActionPerformed
 
-
+private SalesmanCardPanel salesmanCardPanel = new SalesmanCardPanel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clientManager;
     private javax.swing.JButton importManager;
