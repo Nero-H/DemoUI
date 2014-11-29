@@ -11,4 +11,7 @@ public class CaseReportVO {
 	public TimePeriod getPeriod() {
 		return period;
 	}
+	public void setPeriod(TimePeriod period) {
+		this.period = period;
+	}
 }

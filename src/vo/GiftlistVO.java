@@ -1,6 +1,6 @@
 package vo;
 
-public class GiftlistVO extends ReceiptVO{
+public class GiftlistVO {
 
 	String name ;
 	int number ;

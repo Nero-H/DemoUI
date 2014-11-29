@@ -1,6 +1,6 @@
 package vo;
 
-public class WarningVO extends ReceiptVO{
+public class WarningVO {
 	int number ;
 	boolean warning ;
 

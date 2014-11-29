@@ -8,7 +8,7 @@ public enum ReceiptType {
 	ImportReturn,
 	Gift,
 	Warning,
-	Report,
+	Reprot,
 	Receive,
 	Pay,
 	CashRecord;

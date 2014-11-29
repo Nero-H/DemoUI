@@ -5,6 +5,12 @@
  */
 package demoui.importui;
 
+import businesslogicservice.importblservice.ImportBLService;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import server.ClientStart;
+
 /**
  *
  * @author HCW
@@ -16,6 +22,7 @@ public class ImportUI extends javax.swing.JPanel {
      */
     public ImportUI() {
         initComponents();
+        controller = ClientStart.getImportBLService();
     }
 
     /**
@@ -27,73 +34,70 @@ public class ImportUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        importManagerLable = new javax.swing.JLabel();
+        clientLable = new javax.swing.JLabel();
+        clientTextField = new javax.swing.JTextField();
+        clientAddButton = new javax.swing.JButton();
+        clientRemoveButton = new javax.swing.JButton();
+        storehouseLable = new javax.swing.JLabel();
+        storehouseTextField = new javax.swing.JTextField();
+        operatorLable = new javax.swing.JLabel();
+        operatorTextField = new javax.swing.JTextField();
+        totalLable = new javax.swing.JLabel();
+        totalTextField = new javax.swing.JTextField();
+        notesTextField = new javax.swing.JTextField();
+        notesLable = new javax.swing.JLabel();
+        importGoodsListLable = new javax.swing.JLabel();
+        importGoodsListjScrollPane1 = new javax.swing.JScrollPane();
+        importGoodsListTable = new javax.swing.JTable();
+        addGoodsButton = new javax.swing.JButton();
+        deleteGoodsButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
-        jLabel1.setText("进货管理");
+        importManagerLable.setBackground(new java.awt.Color(255, 255, 255));
+        importManagerLable.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
+        importManagerLable.setText("进货管理");
 
-        jLabel2.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jLabel2.setText("客户：");
+        clientLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        clientLable.setText("客户：");
 
-        jTextField1.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jTextField1.setText("SB");
+        clientTextField.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jButton1.setText("a");
+        clientAddButton.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        clientAddButton.setText("a");
 
-        jButton2.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jButton2.setText("12");
+        clientRemoveButton.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        clientRemoveButton.setText("12");
 
-        jLabel4.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jLabel4.setText("仓库：");
+        storehouseLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        storehouseLable.setText("仓库：");
 
-        jTextField3.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jTextField3.setText("jTextField3");
-        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        storehouseTextField.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        storehouseTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jLabel5.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jLabel5.setText("操作员：");
+        operatorLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        operatorLable.setText("操作员：");
 
-        jTextField4.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jTextField4.setText("jTextField4");
+        operatorTextField.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jLabel6.setText("总额合计：");
+        totalLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        totalLable.setText("总额合计：");
 
-        jTextField5.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jTextField5.setText("jTextField5");
+        totalTextField.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
 
-        jTextField6.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jTextField6.setText("jTextField6");
+        notesTextField.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jLabel7.setText("备注：");
+        notesLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        notesLable.setText("备注：");
 
-        jLabel8.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jLabel8.setText("进货商品列表：");
+        importGoodsListLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        importGoodsListLable.setText("进货商品列表：");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        importGoodsListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -125,13 +129,19 @@ public class ImportUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        importGoodsListjScrollPane1.setViewportView(importGoodsListTable);
 
-        jButton3.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jButton3.setText("添加商品");
+        addGoodsButton.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        addGoodsButton.setText("添加商品");
 
-        jButton4.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        jButton4.setText("删除商品");
+        deleteGoodsButton.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        deleteGoodsButton.setText("删除商品");
+
+        jButton1.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        jButton1.setText("确认进货");
+
+        jButton2.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        jButton2.setText("取消进货");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,99 +150,118 @@ public class ImportUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(318, 318, 318)
-                        .addComponent(jLabel1))
+                        .addGap(328, 328, 328)
+                        .addComponent(importManagerLable))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(notesLable)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6))
+                                .addComponent(notesTextField))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
+                                        .addComponent(importGoodsListLable)
                                         .addGap(470, 470, 470)
-                                        .addComponent(jButton3)
+                                        .addComponent(addGoodsButton)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton4))
+                                        .addComponent(deleteGoodsButton))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(importGoodsListjScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
+                                            .addComponent(clientLable)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(clientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(clientAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(clientRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jLabel4)
+                                            .addComponent(storehouseLable)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(storehouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jLabel5)
+                                            .addComponent(operatorLable)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(operatorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jLabel6)
+                                            .addComponent(totalLable)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(39, 39, 39))
+                .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(38, 38, 38))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {clientTextField, operatorTextField, storehouseTextField, totalTextField});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1)
+                .addComponent(importManagerLable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clientLable)
+                    .addComponent(clientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clientAddButton)
+                    .addComponent(clientRemoveButton)
+                    .addComponent(storehouseLable)
+                    .addComponent(storehouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(operatorLable)
+                    .addComponent(operatorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalLable)
+                    .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(notesLable)
+                    .addComponent(notesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(importGoodsListLable)
+                    .addComponent(addGoodsButton)
+                    .addComponent(deleteGoodsButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(importGoodsListjScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {clientTextField, operatorTextField, storehouseTextField, totalTextField});
+
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private ImportBLService controller;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addGoodsButton;
+    private javax.swing.JButton clientAddButton;
+    private javax.swing.JLabel clientLable;
+    private javax.swing.JButton clientRemoveButton;
+    private javax.swing.JTextField clientTextField;
+    private javax.swing.JButton deleteGoodsButton;
+    private javax.swing.JLabel importGoodsListLable;
+    private javax.swing.JTable importGoodsListTable;
+    private javax.swing.JScrollPane importGoodsListjScrollPane1;
+    private javax.swing.JLabel importManagerLable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel notesLable;
+    private javax.swing.JTextField notesTextField;
+    private javax.swing.JLabel operatorLable;
+    private javax.swing.JTextField operatorTextField;
+    private javax.swing.JLabel storehouseLable;
+    private javax.swing.JTextField storehouseTextField;
+    private javax.swing.JLabel totalLable;
+    private javax.swing.JTextField totalTextField;
     // End of variables declaration//GEN-END:variables
 }
