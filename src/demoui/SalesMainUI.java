@@ -16,7 +16,7 @@ public class SalesMainUI extends javax.swing.JPanel {
      */
     public SalesMainUI() {
         initComponents();
-        salesmanCardPanel.setBounds(160, 65, 800, 600);
+        salesmanCardPanel.setBounds(150, 65, 800, 600);
         add(salesmanCardPanel);
     }
 

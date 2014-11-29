@@ -19,7 +19,7 @@ public class SalesUI extends javax.swing.JPanel {
      */
     public SalesUI() {
         initComponents();
-        controller = ClientStart.getSalesBLService();
+        //controller = ClientStart.getSalesBLService();
     }
 
     /**

@@ -19,7 +19,7 @@ public class ClientUI extends javax.swing.JPanel {
      */
     public ClientUI() {
         initComponents();
-        controller = ClientStart.getClientBLService();
+       // controller = ClientStart.getClientBLService();
     }
 
     /**

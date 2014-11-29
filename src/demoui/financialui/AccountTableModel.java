@@ -5,7 +5,13 @@
  */
 package demoui.financialui;
 
+import businesslogicservice.financialblservice.AccountBLService;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import server.ClientStart;
 import utility.MyAbstractTableModel;
 import vo.AccountVO;
 
@@ -22,23 +28,51 @@ public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
     @Override
     public void insertRow(int row, AccountVO rowData) {
         dataList.add(row,rowData);
-        
+        try {
+            AccountBLService accountBLService = ClientStart.server.getAccountBLService();
+            accountBLService.addAccount((AccountVO)rowData);
+        } catch (RemoteException ex) {
+            Logger.getLogger(AccountTableModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         fireTableRowsInserted(row, row);
     }
-
+    
+    public void addRow(String name,double balance){
+        addRow(new AccountVO(name, balance));
+    }
+    
     @Override
-    public void removeRow(int row) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   public void removeRow(int row) {
+        AccountVO object = dataList.remove(row);
+          try {
+            AccountBLService accountBLService = ClientStart.server.getAccountBLService();
+            accountBLService.delAccount(object.getName());
+        } catch (RemoteException ex) {
+            Logger.getLogger(AccountTableModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        fireTableRowsDeleted(row, row);
     }
 
     @Override
     public void setValueAt(Object aValue, int row, int column) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AccountVO rowObject = dataList.get(row);
+        switch(column){
+            case 0: rowObject.setName((String)aValue);break;
+            case 1: rowObject.setBalance((Double)aValue);break;
+            default:System.out.println("accountTableModelSetValueAtError");
+        }
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AccountVO rowObject = dataList.get(rowIndex);
+        switch(columnIndex){
+            case 0: return rowObject.getName();
+            case 1: return rowObject.getBalance();
+            default:
+                System.out.println("AccountTableModelGetValueError");
+                return null;
+        }
     }
     
 }
