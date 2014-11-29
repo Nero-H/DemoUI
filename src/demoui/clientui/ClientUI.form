@@ -25,24 +25,24 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
-              <Component id="ClientManagerLable" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Component id="jButton1" linkSize="1" min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+              <Component id="jLabel1" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="328" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Component id="addClientButton" linkSize="1" min="-2" pref="91" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-              <Component id="deleteClientButton" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+              <Component id="jButton2" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-              <Component id="changeClientButton" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <Component id="jButton3" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="findClientButton" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <Component id="jButton4" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="clientListPanel" min="-2" pref="744" max="-2" attributes="0"/>
+              <Component id="clientListPanel1" min="-2" pref="744" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -51,23 +51,25 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="ClientManagerLable" pref="45" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" pref="47" max="32767" attributes="0"/>
+                  <Component id="jButton1" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="addClientButton" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="deleteClientButton" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="changeClientButton" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="findClientButton" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton3" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton4" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="clientListPanel" min="-2" pref="462" max="-2" attributes="0"/>
+              <Component id="clientListPanel1" min="-2" pref="462" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="ClientManagerLable">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#x6977;&#x4f53;" size="36" style="0"/>
@@ -75,27 +77,27 @@
         <Property name="text" type="java.lang.String" value="&#x5ba2;&#x6237;&#x7ba1;&#x7406;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="addClientButton">
+    <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x6dfb;&#x52a0;&#x5ba2;&#x6237;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="deleteClientButton">
+    <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x5220;&#x9664;&#x5ba2;&#x6237;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="changeClientButton">
+    <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x4fee;&#x6539;&#x5ba2;&#x6237;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="findClientButton">
+    <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x67e5;&#x627e;&#x5ba2;&#x6237;"/>
       </Properties>
     </Component>
-    <Component class="demoui.clientui.ClientListPanel" name="clientListPanel">
+    <Component class="demoui.clientui.ClientListPanel" name="clientListPanel1">
     </Component>
   </SubComponents>
 </Form>

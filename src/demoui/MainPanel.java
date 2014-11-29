@@ -27,21 +27,21 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        logout = new javax.swing.JButton();
-        clientName = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         salesManUI1 = new demoui.SalesManUI();
 
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setRequestFocusEnabled(false);
 
-        logout.setText("注销");
-        logout.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("注销");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        clientName.setText("用户");
+        jLabel1.setText("用户");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -49,34 +49,31 @@ public class MainPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logout)
+                .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(clientName)
+                .addComponent(jLabel1)
                 .addGap(43, 43, 43))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(salesManUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(salesManUI1, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logout)
-                    .addComponent(clientName))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(salesManUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(salesManUI1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_logoutActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel clientName;
-    private javax.swing.JButton logout;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private demoui.SalesManUI salesManUI1;
     // End of variables declaration//GEN-END:variables
 }

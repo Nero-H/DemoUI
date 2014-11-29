@@ -5,9 +5,6 @@
  */
 package demoui.salesui;
 
-import businesslogicservice.saleblservice.SalesBLService;
-import server.ClientStart;
-
 /**
  *
  * @author HCW
@@ -19,7 +16,6 @@ public class SalesUI extends javax.swing.JPanel {
      */
     public SalesUI() {
         initComponents();
-        controller = ClientStart.getSalesBLService();
     }
 
     /**
@@ -31,78 +27,73 @@ public class SalesUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        salesManager = new javax.swing.JLabel();
-        clientLable = new javax.swing.JLabel();
-        clientTextField = new javax.swing.JTextField();
-        salesmanLable = new javax.swing.JLabel();
-        salesmanTextField = new javax.swing.JTextField();
-        clientAddButton = new javax.swing.JButton();
-        clientRemoveButton = new javax.swing.JButton();
-        storehouseLable = new javax.swing.JLabel();
-        storehouseTextField = new javax.swing.JTextField();
-        operatorLable = new javax.swing.JLabel();
-        operatorTextField = new javax.swing.JTextField();
-        totalLable = new javax.swing.JLabel();
-        totalTextField = new javax.swing.JTextField();
-        notesLable = new javax.swing.JLabel();
-        notesTextField = new javax.swing.JTextField();
-        salesListLable = new javax.swing.JLabel();
-        salesGoodsScrollPane1 = new javax.swing.JScrollPane();
-        salesGoodsTable = new javax.swing.JTable();
-        giftGoodsLable = new javax.swing.JLabel();
-        giftGoodsListjScrollPane2 = new javax.swing.JScrollPane();
-        giftGoodsListTable = new javax.swing.JTable();
-        goodsAdd = new javax.swing.JButton();
-        deleteGoods = new javax.swing.JButton();
-        beforeDiscountLable = new javax.swing.JLabel();
-        beforeDiscountTextField = new javax.swing.JTextField();
-        dicountLable = new javax.swing.JLabel();
-        discountTextField = new javax.swing.JTextField();
-        afterDiscountLable = new javax.swing.JLabel();
-        afterDiscountTextField = new javax.swing.JTextField();
-        sale = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        salesManager.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
-        salesManager.setText("销售管理");
+        jLabel1.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
+        jLabel1.setText("销售管理");
 
-        clientLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        clientLable.setText("客户：");
+        jLabel2.setText("客户：");
 
-        salesmanLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        salesmanLable.setText("业务员：");
+        jTextField1.setText("SB");
 
-        salesmanTextField.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("业务员：");
+
+        jTextField2.setText("SB");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salesmanTextFieldActionPerformed(evt);
+                jTextField2ActionPerformed(evt);
             }
         });
 
-        clientAddButton.setText("a");
+        jButton1.setText("a");
 
-        clientRemoveButton.setText("12");
+        jButton2.setText("12");
 
-        storehouseLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        storehouseLable.setText("仓库：");
+        jLabel4.setText("仓库：");
 
-        storehouseTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField3.setText("jTextField3");
+        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        operatorLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        operatorLable.setText("操作员：");
+        jLabel5.setText("操作员：");
 
-        totalLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        totalLable.setText("总额合计：");
+        jTextField4.setText("jTextField4");
 
-        notesLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        notesLable.setText("备注：");
+        jLabel6.setText("总额合计：");
 
-        salesListLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        salesListLable.setText("销售商品列表：");
+        jTextField5.setText("jTextField5");
 
-        salesGoodsTable.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel7.setText("备注：");
+
+        jTextField6.setText("jTextField6");
+
+        jLabel8.setText("销售商品列表：");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -134,12 +125,11 @@ public class SalesUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        salesGoodsScrollPane1.setViewportView(salesGoodsTable);
+        jScrollPane1.setViewportView(jTable1);
 
-        giftGoodsLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        giftGoodsLable.setText("赠品列表：");
+        jLabel9.setText("赠品列表：");
 
-        giftGoodsListTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -160,214 +150,149 @@ public class SalesUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        giftGoodsListjScrollPane2.setViewportView(giftGoodsListTable);
+        jScrollPane2.setViewportView(jTable2);
 
-        goodsAdd.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        goodsAdd.setText("添加商品");
+        jButton3.setText("添加商品");
 
-        deleteGoods.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        deleteGoods.setText("删除商品");
-
-        beforeDiscountLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        beforeDiscountLable.setText("折让前总额：");
-
-        dicountLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        dicountLable.setText("折让：");
-
-        discountTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                discountTextFieldActionPerformed(evt);
-            }
-        });
-
-        afterDiscountLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        afterDiscountLable.setText("折让后总额：");
-
-        sale.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        sale.setText("确认销售");
-
-        cancel.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        cancel.setText("取消销售");
+        jButton4.setText("删除商品");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(328, 328, 328)
-                .addComponent(salesManager)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addGap(355, 355, 355))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dicountLable)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(clientLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clientAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clientRemoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(salesmanLable)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(salesmanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(storehouseLable)
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(storehouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(operatorLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(operatorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(totalLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField6))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(discountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(afterDiscountLable)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(afterDiscountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(notesLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(notesTextField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(giftGoodsLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sale)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(beforeDiscountLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(beforeDiscountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(salesListLable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(goodsAdd)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteGoods))
-                            .addComponent(giftGoodsListjScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(salesGoodsScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addGap(40, 40, 40))))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {clientAddButton, clientRemoveButton});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {afterDiscountTextField, beforeDiscountTextField, clientTextField, discountTextField, operatorTextField, salesmanTextField, storehouseTextField, totalTextField});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField1, jTextField2, jTextField3, jTextField4, jTextField5});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(salesManager)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clientLable)
-                    .addComponent(clientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salesmanLable)
-                    .addComponent(salesmanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clientAddButton)
-                    .addComponent(clientRemoveButton)
-                    .addComponent(storehouseLable)
-                    .addComponent(storehouseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(operatorLable)
-                    .addComponent(operatorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalLable)
-                    .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(beforeDiscountLable)
-                    .addComponent(beforeDiscountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dicountLable)
-                    .addComponent(discountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(afterDiscountLable)
-                    .addComponent(afterDiscountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(notesLable)
-                            .addComponent(notesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(salesListLable)
-                            .addComponent(goodsAdd)
-                            .addComponent(deleteGoods))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(salesGoodsScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(giftGoodsLable)
-                        .addGap(14, 14, 14)
-                        .addComponent(giftGoodsListjScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancel)
-                            .addComponent(sale))
-                        .addGap(156, 156, 156))))
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {clientAddButton, clientRemoveButton});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {afterDiscountTextField, beforeDiscountTextField, clientTextField, discountTextField, operatorTextField, salesmanTextField, storehouseTextField, totalTextField});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextField1, jTextField2, jTextField3, jTextField4, jTextField5});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void salesmanTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesmanTextFieldActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_salesmanTextFieldActionPerformed
-
-    private void discountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_discountTextFieldActionPerformed
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
 
-    private SalesBLService controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel afterDiscountLable;
-    private javax.swing.JTextField afterDiscountTextField;
-    private javax.swing.JLabel beforeDiscountLable;
-    private javax.swing.JTextField beforeDiscountTextField;
-    private javax.swing.JButton cancel;
-    private javax.swing.JButton clientAddButton;
-    private javax.swing.JLabel clientLable;
-    private javax.swing.JButton clientRemoveButton;
-    private javax.swing.JTextField clientTextField;
-    private javax.swing.JButton deleteGoods;
-    private javax.swing.JLabel dicountLable;
-    private javax.swing.JTextField discountTextField;
-    private javax.swing.JLabel giftGoodsLable;
-    private javax.swing.JTable giftGoodsListTable;
-    private javax.swing.JScrollPane giftGoodsListjScrollPane2;
-    private javax.swing.JButton goodsAdd;
-    private javax.swing.JLabel notesLable;
-    private javax.swing.JTextField notesTextField;
-    private javax.swing.JLabel operatorLable;
-    private javax.swing.JTextField operatorTextField;
-    private javax.swing.JButton sale;
-    private javax.swing.JScrollPane salesGoodsScrollPane1;
-    private javax.swing.JTable salesGoodsTable;
-    private javax.swing.JLabel salesListLable;
-    private javax.swing.JLabel salesManager;
-    private javax.swing.JLabel salesmanLable;
-    private javax.swing.JTextField salesmanTextField;
-    private javax.swing.JLabel storehouseLable;
-    private javax.swing.JTextField storehouseTextField;
-    private javax.swing.JLabel totalLable;
-    private javax.swing.JTextField totalTextField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,46 +26,57 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="392" max="32767" attributes="0"/>
-              <Component id="salesman" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="392" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="importReturn" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="salesManager" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="salesReturn" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="importManager" linkSize="1" max="32767" attributes="0"/>
-                      <Component id="clientManager" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jButton2" linkSize="1" max="32767" attributes="0"/>
+                      <Component id="jButton1" linkSize="1" alignment="1" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jButton3" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButton4" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton5" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="clientUI1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="salesman" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-              <Component id="clientManager" linkSize="2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="importManager" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="importReturn" linkSize="2" min="-2" pref="47" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="salesManager" linkSize="2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="salesReturn" linkSize="2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
+                      <Component id="jButton1" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jButton2" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jButton3" linkSize="2" min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jButton4" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="jButton5" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="clientUI1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="salesman">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#x6977;&#x4f53;" size="36" style="0"/>
@@ -73,7 +84,7 @@
         <Property name="text" type="java.lang.String" value="&#x8fdb;&#x8d27;&#x9500;&#x552e;&#x4eba;&#x5458;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="clientManager">
+    <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#x6977;&#x4f53;" size="16" style="0"/>
@@ -89,11 +100,8 @@
           <Dimension value="[111, 35]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientManagerActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="importManager">
+    <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#x6977;&#x4f53;" size="16" style="0"/>
@@ -102,10 +110,10 @@
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importManagerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="importReturn">
+    <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#x6977;&#x4f53;" size="16" style="0"/>
@@ -113,25 +121,18 @@
         <Property name="text" type="java.lang.String" value="&#x8fdb;&#x8d27;&#x9000;&#x8d27;"/>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importReturnActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="salesManager">
+    <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x9500;&#x552e;&#x7ba1;&#x7406;"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salesManagerActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="salesReturn">
+    <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x9500;&#x552e;&#x9000;&#x8d27;"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salesReturnActionPerformed"/>
-      </Events>
+    </Component>
+    <Component class="demoui.clientui.ClientUI" name="clientUI1">
     </Component>
   </SubComponents>
 </Form>

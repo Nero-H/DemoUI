@@ -1,16 +1,23 @@
 package vo;
 
+
 public class ReceiptVO {
 	
-	boolean whetherPass;
+	ReceiptState state;
 	ReceiptType type;
-	
-	public boolean getWhetherPass() {
-		return whetherPass;
+	public ReceiptState getState() {
+		return state;
+	}
+	public void setState(ReceiptState state) {
+		this.state = state;
+	}
+	public ReceiptType getType() {
+		return type;
+	}
+	public void setType(ReceiptType type) {
+		this.type = type;
 	}
 	
-	public void setWhetherPass(boolean result){
-		whetherPass=result;
-	}
+	
 
 }

@@ -5,9 +5,6 @@
  */
 package demoui.importui;
 
-import businesslogicservice.importblservice.ImportBLService;
-import server.ClientStart;
-
 /**
  *
  * @author HCW
@@ -19,7 +16,6 @@ public class ImportReturnUI extends javax.swing.JPanel {
      */
     public ImportReturnUI() {
         initComponents();
-        controller = ClientStart.getImportBLService();
     }
 
     /**
@@ -31,26 +27,26 @@ public class ImportReturnUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        importListPanel = new demoui.importui.ImportListPanel();
-        importReturnLable = new javax.swing.JLabel();
-        importListLable = new javax.swing.JLabel();
-        viewImportButton = new javax.swing.JButton();
-        importReturnButton = new javax.swing.JButton();
+        importListPanel1 = new demoui.importui.ImportListPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        importReturnLable.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
-        importReturnLable.setText("进货退货");
+        jLabel1.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
+        jLabel1.setText("进货退货");
 
-        importListLable.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        importListLable.setText("进货单列表：");
+        jLabel2.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        jLabel2.setText("进货单列表：");
 
-        viewImportButton.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        viewImportButton.setText("查看详情");
+        jButton1.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        jButton1.setText("查看详情");
 
-        importReturnButton.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
-        importReturnButton.setText("退货");
+        jButton2.setFont(new java.awt.Font("楷体", 0, 12)); // NOI18N
+        jButton2.setText("退货");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,52 +54,52 @@ public class ImportReturnUI extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(328, Short.MAX_VALUE)
-                .addComponent(importReturnLable)
+                .addComponent(jLabel1)
                 .addContainerGap(328, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(importListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(importListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewImportButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(importReturnButton, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(importListLable))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jLabel2))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {importReturnButton, viewImportButton});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(importReturnLable)
+                .addComponent(jLabel1)
                 .addGap(13, 13, 13)
-                .addComponent(importListLable)
+                .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(viewImportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(importReturnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(importListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(importListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {importReturnButton, viewImportButton});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private ImportBLService controller;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel importListLable;
-    private demoui.importui.ImportListPanel importListPanel;
-    private javax.swing.JButton importReturnButton;
-    private javax.swing.JLabel importReturnLable;
-    private javax.swing.JButton viewImportButton;
+    private demoui.importui.ImportListPanel importListPanel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ImportVO implements Serializable{
+public class ImportVO extends ReceiptVO implements Serializable{
 	/**
 	 * 
 	 */

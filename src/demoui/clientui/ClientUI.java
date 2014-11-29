@@ -5,9 +5,6 @@
  */
 package demoui.clientui;
 
-import businesslogicservice.clientblservice.ClientBLService;
-import server.ClientStart;
-
 /**
  *
  * @author HCW
@@ -19,7 +16,6 @@ public class ClientUI extends javax.swing.JPanel {
      */
     public ClientUI() {
         initComponents();
-        controller = ClientStart.getClientBLService();
     }
 
     /**
@@ -31,80 +27,81 @@ public class ClientUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ClientManagerLable = new javax.swing.JLabel();
-        addClientButton = new javax.swing.JButton();
-        deleteClientButton = new javax.swing.JButton();
-        changeClientButton = new javax.swing.JButton();
-        findClientButton = new javax.swing.JButton();
-        clientListPanel = new demoui.clientui.ClientListPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        clientListPanel1 = new demoui.clientui.ClientListPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        ClientManagerLable.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
-        ClientManagerLable.setText("客户管理");
+        jLabel1.setFont(new java.awt.Font("楷体", 0, 36)); // NOI18N
+        jLabel1.setText("客户管理");
 
-        addClientButton.setText("添加客户");
+        jButton1.setText("添加客户");
 
-        deleteClientButton.setText("删除客户");
+        jButton2.setText("删除客户");
 
-        changeClientButton.setText("修改客户");
+        jButton3.setText("修改客户");
 
-        findClientButton.setText("查找客户");
+        jButton4.setText("查找客户");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(328, 328, 328)
-                .addComponent(ClientManagerLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(174, 174, 174)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(328, 328, 328))
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(addClientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116)
-                .addComponent(deleteClientButton)
+                .addGap(258, 258, 258)
+                .addComponent(jButton2)
                 .addGap(122, 122, 122)
-                .addComponent(changeClientButton)
+                .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(findClientButton)
+                .addComponent(jButton4)
                 .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(clientListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(clientListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addClientButton, changeClientButton, deleteClientButton, findClientButton});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(ClientManagerLable, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addClientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteClientButton)
-                    .addComponent(changeClientButton)
-                    .addComponent(findClientButton))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addGap(12, 12, 12)
-                .addComponent(clientListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(clientListPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addClientButton, changeClientButton, deleteClientButton, findClientButton});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private ClientBLService controller;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ClientManagerLable;
-    private javax.swing.JButton addClientButton;
-    private javax.swing.JButton changeClientButton;
-    private demoui.clientui.ClientListPanel clientListPanel;
-    private javax.swing.JButton deleteClientButton;
-    private javax.swing.JButton findClientButton;
+    private demoui.clientui.ClientListPanel clientListPanel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
