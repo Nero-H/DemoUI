@@ -19,7 +19,7 @@ public class ImportReturnUI extends javax.swing.JPanel {
      */
     public ImportReturnUI() {
         initComponents();
-        controller = ClientStart.getImportBLService();
+        //controller = ClientStart.getImportBLService();
     }
 
     /**

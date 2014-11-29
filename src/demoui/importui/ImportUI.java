@@ -22,7 +22,7 @@ public class ImportUI extends javax.swing.JPanel {
      */
     public ImportUI() {
         initComponents();
-        controller = ClientStart.getImportBLService();
+        //controller = ClientStart.getImportBLService();
     }
 
     /**
