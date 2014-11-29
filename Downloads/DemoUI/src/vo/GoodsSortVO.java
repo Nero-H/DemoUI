@@ -10,6 +10,7 @@ import utility.MyTreeNode;
 
 public class GoodsSortVO implements MyTreeNode {
 	ArrayList<GoodsSortVO> children;
+        
 	MyTreeNode parent;
 	MyTreeNode oldParent;
 	String name;
