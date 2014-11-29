@@ -10,13 +10,13 @@ import utility.MyTreeNode;
 
 public class GoodsSortVO implements MyTreeNode {
 	ArrayList<GoodsSortVO> children;
-        
 	MyTreeNode parent;
 	MyTreeNode oldParent;
 	String name;
 	boolean allowsChildren;
 
-	public GoodsSortVO(){}
+	public GoodsSortVO(){
+        }
 	
 	public GoodsSortVO(String name) {
 		this.name = name;
