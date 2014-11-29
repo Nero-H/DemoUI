@@ -8,5 +8,5 @@ import businesslogicservice.financialblservice.AccountBLService;
 
 public interface ServerInterface extends Remote{
 	public ClientBLService getClientService() throws RemoteException;
-        public AccountBLService 
+        public AccountBLService getAccountBLService() throws RemoteException;
 }

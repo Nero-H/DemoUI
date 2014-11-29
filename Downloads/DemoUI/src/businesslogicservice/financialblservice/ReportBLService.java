@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import po.SalesPO;
 import vo.CaseReportVO;
 import vo.HistoryReportVO;
 import vo.ReceiptVO;

@@ -1,11 +1,11 @@
 package vo;
 
-public class MoneyItemVO {
+public class MoneyLineItemVO {
 	String accountId;
 	double sum;
 	String comment;
 
-	public MoneyItemVO(String accountId, double sum, String comment) {
+	public MoneyLineItemVO(String accountId, double sum, String comment) {
 		this.accountId = accountId;
 		this.sum = sum;
 		this.comment = comment;
