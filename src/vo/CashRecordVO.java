@@ -1,49 +1,37 @@
 package vo;
 
+import java.util.ArrayList;
 
+//用于BL层向UI层传搜索结果
 public class CashRecordVO {
-	String accountId;
-	String itemName;//单个条目的名称
-	String itemComment;//单个条目的备注
-	double sum;//单个条目的金额
-
-	public CashRecordVO(String accountId,
-			String itemName,String itemComment) {
-		this.accountId = accountId;
-		this.itemName = itemName;
-		this.itemComment = itemComment;
+	String accountName;
+	ArrayList<CashRecordLineItemVO> list;
+	double sum;
+	String serialNumber;
+	String userName;
+	public CashRecordVO(String accountName,
+			ArrayList<CashRecordLineItemVO> list, double sum,
+			String serialNumber, String userName) {
+		super();
+		this.accountName = accountName;
+		this.list = list;
+		this.sum = sum;
+		this.serialNumber = serialNumber;
+		this.userName = userName;
 	}
-
-	public String getAccountId() {
-		return accountId;
+	public String getAccountName() {
+		return accountName;
 	}
-
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public ArrayList<CashRecordLineItemVO> getList() {
+		return list;
 	}
-
-	public String getItemName() {
-		return itemName;
-	}
-
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
-	public String getItemComment() {
-		return itemComment;
-	}
-
-	public void setItemComment(String itemComment) {
-		this.itemComment = itemComment;
-	}
-
 	public double getSum() {
 		return sum;
 	}
-
-	public void setSum(double sum) {
-		this.sum = sum;
+	public String getSerialNumber() {
+		return serialNumber;
 	}
-
+	public String getUserName() {
+		return userName;
+	}
 }

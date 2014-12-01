@@ -25,6 +25,16 @@ public class AccountGiftPromotionVO extends PromotionVO {
 
 
 
+	public PromotionType getType() {
+		return type;
+	}
+
+
+	public void setType(PromotionType type) {
+		this.type = type;
+	}
+
+
 	public AccountGiftPromotionVO() {
 		// TODO Auto-generated constructor stub
 	}

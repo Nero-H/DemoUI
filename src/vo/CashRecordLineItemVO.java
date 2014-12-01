@@ -1,6 +1,6 @@
 package vo;
 
-public class CashRecordLineItemVO {
+public class CashRecordLineItemVO implements FinancialReceiptLineItemVO{
 	String name;
 	double sum;
 	String comment;
@@ -22,6 +22,18 @@ public class CashRecordLineItemVO {
 
 	public String getComment() {
 		return comment;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	

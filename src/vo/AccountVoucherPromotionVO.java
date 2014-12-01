@@ -7,7 +7,25 @@ public class AccountVoucherPromotionVO extends PromotionVO {
 	Date startDate;
 	Date endDate;
 	double account;
-	double money;
+	public double getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(double voucher) {
+		this.voucher = voucher;
+	}
+
+	public PromotionType getType() {
+		return type;
+	}
+
+	public void setType(PromotionType type) {
+		this.type = type;
+	}
+
+
+
+	double voucher;
 	PromotionType type=PromotionType.AccountVoucher;
 
 	public AccountVoucherPromotionVO() {
@@ -38,20 +56,13 @@ public class AccountVoucherPromotionVO extends PromotionVO {
 		this.account = account;
 	}
 
-	public double getMoney() {
-		return money;
-	}
-
-	public void setMoney(double money) {
-		this.money = money;
-	}
-
+	
 
 	public AccountVoucherPromotionVO(Date start,Date end,double a,double m){
 		startDate=start;
 		endDate=end;
 		account=a;
-		money=m;
+		voucher=m;
 
 	}
 	

@@ -1,6 +1,9 @@
 package vo;
 
-public class GoodsVO {
+import java.rmi.RemoteException;
+import utility.MyTreeNode;
+
+public class GoodsVO extends MyTreeNode{
 	
 	String goodsNumber;
 	String goodsName;
@@ -11,6 +14,18 @@ public class GoodsVO {
 	double recentPrice;
 	double recentRetailPrice;
 	int warningNumber ;
+	
+	
+	
+	public GoodsVO(String goodsNumber, String goodsName,
+			String goodsModelNumber, double inPrice, double retailPrice) throws RemoteException {
+		super(goodsName);
+		this.goodsNumber = goodsNumber;
+		this.goodsName = goodsName;
+		this.goodsModelNumber = goodsModelNumber;
+		this.inPrice = inPrice;
+		this.retailPrice = retailPrice;
+	}
 	public String getGoodsNumber() {
 		return goodsNumber;
 	}

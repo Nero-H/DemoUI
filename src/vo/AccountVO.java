@@ -1,6 +1,12 @@
 package vo;
 
-public class AccountVO {
+import java.io.Serializable;
+
+public class AccountVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String name;
 	double balance;
 	

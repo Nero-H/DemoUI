@@ -17,8 +17,8 @@ public class ClientVO implements Serializable{
 	private String postCode;	//邮编
 	private String email;	//邮件
 	private double quota;	//应收额度
-	private double receivable;	//应收
-	private double payable;		//应付
+	private double receivable = 0;	//应收
+	private double payable = 0;		//应付
 	private String defaultSalesman;		//默认业务员
 	
 	

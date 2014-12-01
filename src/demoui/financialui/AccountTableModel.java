@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import server.ClientStart;
 import utility.MyAbstractTableModel;
 import vo.AccountVO;
+import vo.UpdateAccountVO;
 
 /**
  *
@@ -21,7 +22,7 @@ import vo.AccountVO;
  */
 public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
 
-    public AccountTableModel(ArrayList<AccountVO> data, ArrayList columnNames) {
+    public AccountTableModel(ArrayList<AccountVO> data,ArrayList columnNames) {
         super(data, columnNames);
     }
 
@@ -29,7 +30,7 @@ public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
     public void insertRow(int row, AccountVO rowData) {
         dataList.add(row,rowData);
         try {
-            AccountBLService accountBLService = ClientStart.server.getAccountBLService();
+            AccountBLService accountBLService = ClientStart.getAccountBLService();
             accountBLService.addAccount((AccountVO)rowData);
         } catch (RemoteException ex) {
             Logger.getLogger(AccountTableModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -37,6 +38,11 @@ public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
         fireTableRowsInserted(row, row);
     }
     
+    /**
+     *
+     * @param name
+     * @param balance
+     */
     public void addRow(String name,double balance){
         addRow(new AccountVO(name, balance));
     }
@@ -56,10 +62,17 @@ public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
     @Override
     public void setValueAt(Object aValue, int row, int column) {
         AccountVO rowObject = dataList.get(row);
+        String oldName = rowObject.getName();
         switch(column){
             case 0: rowObject.setName((String)aValue);break;
             case 1: rowObject.setBalance((Double)aValue);break;
             default:System.out.println("accountTableModelSetValueAtError");
+        }
+        try {
+            AccountBLService accountBLService = ClientStart.server.getAccountBLService();
+            accountBLService.updateAccount(new UpdateAccountVO(oldName, rowObject.getName()));
+        } catch (RemoteException ex) {
+            Logger.getLogger(AccountTableModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -73,6 +86,16 @@ public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
                 System.out.println("AccountTableModelGetValueError");
                 return null;
         }
+    }
+    
+    public int getIndexOf(String name){
+        for(int i = 0 ; i < dataList.size() ; i ++){
+            AccountVO account = dataList.get(i);
+            if(account.getName().equals(name)){
+                return i;
+            }
+        }
+        return -1;
     }
     
 }

@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class CustomerGiftPromotionVO extends PromotionVO {
 
+	
 	Date startDate;
 	Date endDate;
 	ClientLevel customerlevel; //客户等级  ，customerLevel大于一，小于五
@@ -60,6 +61,14 @@ public class CustomerGiftPromotionVO extends PromotionVO {
 		
 	}
 	
-	
+	public PromotionType getType() {
+		return type;
+	}
+
+
+	public void setType(PromotionType type) {
+		this.type = type;
+	}
+
 
 }

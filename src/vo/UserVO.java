@@ -4,11 +4,25 @@ public class UserVO {
 	String name;
 	String id;
 	String passward;
+	UserIdentity identity;
 
-	public UserVO(String name, String id, String passward) {
+	public UserVO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public UserIdentity getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(UserIdentity identity) {
+		this.identity = identity;
+	}
+
+	public UserVO(String name, String id, String passward,UserIdentity identity) {
 		this.name = name;
 		this.id = id;
 		this.passward = passward;
+		this.identity=identity;
 	}
 
 	public String getName() {

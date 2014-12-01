@@ -1,33 +1,44 @@
 package vo;
 
+
 import java.util.ArrayList;
 
-public class PayVO {
-	int clientNum;
-	ArrayList<PayVOLineItem> list;
+
+public class PayVO implements MoneyVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String clientName;
+	ArrayList<MoneyLineItemVO> list;
 	double sum;
-	
-	public PayVO(int clientNum, ArrayList<PayVOLineItem> list) {
-		this.clientNum = clientNum;
+	String serialNumber;
+	String userName;
+	public PayVO(String clientName, ArrayList<MoneyLineItemVO> list, double sum,
+			String serialNumber, String userName) {
+		super();
+		this.clientName = clientName;
 		this.list = list;
+		this.sum = sum;
+		this.serialNumber = serialNumber;
+		this.userName = userName;
 	}
-	
-	public int getClient() {
-		return clientNum;
+	public String getClientName() {
+		return clientName;
 	}
-	public void setClient(int clientNum) {
-		this.clientNum = clientNum;
-	}
-	public ArrayList<PayVOLineItem> getList() {
+	public ArrayList<MoneyLineItemVO> getList() {
 		return list;
-	}
-	public void setList(ArrayList<PayVOLineItem> list) {
-		this.list = list;
 	}
 	public double getSum() {
 		return sum;
 	}
-	public void setSum(double sum) {
-		this.sum = sum;
+	public String getSerialNumber() {
+		return serialNumber;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	
+	
+	
 }

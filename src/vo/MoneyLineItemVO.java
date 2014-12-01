@@ -1,6 +1,6 @@
 package vo;
 
-public class MoneyLineItemVO {
+public class MoneyLineItemVO implements FinancialReceiptLineItemVO{
 	String accountId;
 	double sum;
 	String comment;
@@ -22,6 +22,19 @@ public class MoneyLineItemVO {
 	public String getComment() {
 		return comment;
 	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
 	
 	
 }

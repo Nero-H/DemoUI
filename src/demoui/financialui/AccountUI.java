@@ -4,7 +4,16 @@
  * and open the template in the editor.
  */
 package demoui.financialui;
-
+import businesslogicservice.financialblservice.AccountBLService;
+import java.awt.Font;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import server.ClientStart;
+import server.ServerInterface;
+import utility.Tool;
+import vo.AccountVO;
 /**
  *
  * @author administrasion
@@ -27,24 +36,121 @@ public class AccountUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        addAccountDialog = new javax.swing.JDialog();
+        nameLabel = new javax.swing.JLabel();
+        accountNameLabel = new javax.swing.JLabel();
+        accountBalanceLabel = new javax.swing.JLabel();
+        accountNameTextField = new javax.swing.JTextField();
+        accountBalanceTextField = new javax.swing.JTextField();
+        addEnsureButton = new javax.swing.JButton();
+        addCancelButton = new javax.swing.JButton();
+        balanceHintLabel = new javax.swing.JLabel();
+        nameHintLabel = new javax.swing.JLabel();
         functionLabel = new javax.swing.JLabel();
         delAccountButton = new javax.swing.JButton();
         findAccountButton = new javax.swing.JButton();
         addAccountButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ArrayList col = new ArrayList();
+        col.add("账户名称");
+        col.add("账户余额");
+        accountTabel = new javax.swing.JTable();
+        findTextField = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        addAccountDialog.setLocation(new java.awt.Point(200, 250));
+        addAccountDialog.setMinimumSize(new java.awt.Dimension(400, 200));
+        addAccountDialog.setSize(new java.awt.Dimension(400, 220));
+
+        nameLabel.setFont(Tool.getTitleFont());
+        nameLabel.setText("添加账户");
+
+        accountNameLabel.setFont(Tool.getButtonFont());
+        accountNameLabel.setText("账户名：");
+
+        accountBalanceLabel.setFont(Tool.getButtonFont());
+        accountBalanceLabel.setText("账户余额：");
+
+        accountNameTextField.setFont(Tool.getButtonFont());
+
+        accountBalanceTextField.setFont(Tool.getButtonFont());
+
+        addEnsureButton.setFont(Tool.getButtonFont());
+        addEnsureButton.setText("确定");
+        addEnsureButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addEnsureButtonMousePressed(evt);
+            }
+        });
+
+        addCancelButton.setFont(Tool.getButtonFont());
+        addCancelButton.setText("取消");
+        addCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addCancelButtonMousePressed(evt);
+            }
+        });
+
+        balanceHintLabel.setFont(Tool.getButtonFont());
+        balanceHintLabel.setForeground(new java.awt.Color(255, 0, 0));
+
+        nameHintLabel.setFont(Tool.getButtonFont());
+
+        javax.swing.GroupLayout addAccountDialogLayout = new javax.swing.GroupLayout(addAccountDialog.getContentPane());
+        addAccountDialog.getContentPane().setLayout(addAccountDialogLayout);
+        addAccountDialogLayout.setHorizontalGroup(
+            addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addAccountDialogLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accountBalanceLabel)
+                    .addComponent(accountNameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(accountNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                    .addComponent(accountBalanceTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balanceHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameHintLabel))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(addAccountDialogLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(addEnsureButton)
+                .addGap(59, 59, 59)
+                .addComponent(addCancelButton)
+                .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addAccountDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nameLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+
+        addAccountDialogLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {balanceHintLabel, nameHintLabel});
+
+        addAccountDialogLayout.setVerticalGroup(
+            addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addAccountDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accountNameLabel)
+                    .addComponent(accountNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameHintLabel))
+                .addGap(19, 19, 19)
+                .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balanceHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(accountBalanceLabel)
+                        .addComponent(accountBalanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(addAccountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addEnsureButton)
+                    .addComponent(addCancelButton))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
+
+        addAccountDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {accountBalanceTextField, balanceHintLabel, nameHintLabel});
 
         setPreferredSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
@@ -54,9 +160,19 @@ public class AccountUI extends javax.swing.JPanel {
 
         delAccountButton.setFont(addAccountButton.getFont());
         delAccountButton.setText("删除账户");
+        delAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                delAccountButtonMousePressed(evt);
+            }
+        });
 
         findAccountButton.setFont(addAccountButton.getFont());
         findAccountButton.setText("查找账户");
+        findAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                findAccountButtonMousePressed(evt);
+            }
+        });
 
         addAccountButton.setFont(new java.awt.Font("楷体", 0, 16)); // NOI18N
         addAccountButton.setText("添加帐户");
@@ -69,20 +185,12 @@ public class AccountUI extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable1.setPreferredSize(new java.awt.Dimension(660, 330));
-        jTable1.setSize(new java.awt.Dimension(660, 330));
-        jScrollPane1.setViewportView(jTable1);
+        accountTabel.setAutoCreateRowSorter(true);
+        accountTabel.setModel(new AccountTableModel(getData(),col));
+        accountTabel.setPreferredSize(new java.awt.Dimension(660, 330));
+        accountTabel.setSize(new java.awt.Dimension(660, 330));
+        jScrollPane1.setViewportView(accountTabel);
+        accountTabel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,20 +199,22 @@ public class AccountUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(delAccountButton)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(findAccountButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(functionLabel)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(delAccountButton)
+                .addGap(18, 18, 18)
+                .addComponent(findTextField)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(findAccountButton)
+                .addGap(15, 15, 15))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addAccountButton, delAccountButton, findAccountButton});
@@ -118,10 +228,11 @@ public class AccountUI extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delAccountButton)
                     .addComponent(findAccountButton)
-                    .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(findTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addAccountButton, delAccountButton, findAccountButton});
@@ -129,17 +240,92 @@ public class AccountUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAccountButtonMousePressed
-        // TODO add your handling code here:
+        addAccountDialog.setVisible(true);
     }//GEN-LAST:event_addAccountButtonMousePressed
 
+    private void addEnsureButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEnsureButtonMousePressed
+        
+        if(accountNameTextField.getText().equals("")){
+            nameHintLabel.setText("输入不能为空");
+            return;
+        }else{
+            nameHintLabel.setText("");
+        }
+        
+        if(accountBalanceTextField.getText().equals("")){
+            balanceHintLabel.setText("输入不能为空");
+            return;
+        }else{
+            balanceHintLabel.setText("");
+        }
+        
+        if(!Tool.isNumeric(accountBalanceTextField.getText())){
+            balanceHintLabel.setText("请输入有效的数字");
+            return;
+        }else{
+            balanceHintLabel.setText("");
+        }
+      
+        ((AccountTableModel)accountTabel.getModel()).addRow(accountNameTextField.getText(), Double.parseDouble(accountBalanceTextField.getText()));
+        accountNameTextField.setText("");
+        accountBalanceTextField.setText("");
+        addAccountDialog.setVisible(false);
+    }//GEN-LAST:event_addEnsureButtonMousePressed
 
+    private void delAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delAccountButtonMousePressed
+        int rows[] = accountTabel.getSelectedRows();
+        for(int row : rows){
+            ((AccountTableModel)accountTabel.getModel()).removeRow(row);
+        }
+    }//GEN-LAST:event_delAccountButtonMousePressed
+
+    private void addCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCancelButtonMousePressed
+        addAccountDialog.setVisible(false);
+    }//GEN-LAST:event_addCancelButtonMousePressed
+
+    private void findAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findAccountButtonMousePressed
+        int index = ((AccountTableModel)accountTabel.getModel()).getIndexOf(findTextField.getText());
+        index = accountTabel.convertRowIndexToView(index);
+        if(index != -1){
+            accountTabel.setRowSelectionInterval(index, index);
+        }
+    }//GEN-LAST:event_findAccountButtonMousePressed
+
+    private ArrayList<AccountVO> getData(){
+        ClientStart.main();
+        try{
+            ServerInterface serverInterface = ClientStart.server;
+            if(serverInterface != null){
+                AccountBLService accountBLService = serverInterface.getAccountBLService();
+                return accountBLService.getList();
+            }else{
+                return new ArrayList<AccountVO>();
+            }
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accountBalanceLabel;
+    private javax.swing.JTextField accountBalanceTextField;
+    private javax.swing.JLabel accountNameLabel;
+    private javax.swing.JTextField accountNameTextField;
+    private javax.swing.JTable accountTabel;
     private javax.swing.JButton addAccountButton;
+    private javax.swing.JDialog addAccountDialog;
+    private javax.swing.JButton addCancelButton;
+    private javax.swing.JButton addEnsureButton;
+    private javax.swing.JLabel balanceHintLabel;
     private javax.swing.JButton delAccountButton;
     private javax.swing.JButton findAccountButton;
+    private javax.swing.JTextField findTextField;
     private javax.swing.JLabel functionLabel;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel nameHintLabel;
+    private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }
