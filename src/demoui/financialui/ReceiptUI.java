@@ -4,27 +4,32 @@
  * and open the template in the editor.
  */
 package demoui.financialui;
+import businesslogicservice.clientblservice.ClientBLService;
 import businesslogicservice.financialblservice.AccountBLService;
 import businesslogicservice.financialblservice.CashRecordBLService;
 import businesslogicservice.financialblservice.MoneyBLService;
+import businesslogicservice.userblservice.LoginBLService;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
-import java.net.MalformedURLException;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import server.ClientStart;
 import server.ServerInterface;
 import utility.MyTableModel;
 import utility.Tool;
 import vo.AccountVO;
+import vo.CashRecordLineItemVO;
+import vo.CashRecordVO;
 import vo.FinancialReceiptLineItemVO;
 import vo.MoneyLineItemVO;
 import vo.MoneyVO;
+import vo.PayVO;
 import vo.ReceiptType;
+import vo.ReceiveVO;
 /**
  *
  * @author administrasion
@@ -32,13 +37,26 @@ import vo.ReceiptType;
 public class ReceiptUI extends javax.swing.JPanel {
     MoneyBLService moneyBLService;
     CashRecordBLService cashRecordBLService;
+    ReceiptType type = ReceiptType.Receive;
+    String userName;
+    private double itemSum;
     /**
      * Creates new form AccountUI
      */
     public ReceiptUI() {
+        
+        try {
+            ClientStart.main();
+            ServerInterface serverInterface = ClientStart.server;
+            if(serverInterface != null){
+                moneyBLService = serverInterface.getMoneyBLService(type);
+                LoginBLService loginBLService = serverInterface.getLoginBLService();
+                userName = loginBLService.getUserName();
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
-        moneyBLService = ClientStart.getMoneyBLService(type);
-        cashRecordBLService = ClientStart.getCashRecordBLService();
     }
 
     /**
@@ -57,7 +75,7 @@ public class ReceiptUI extends javax.swing.JPanel {
         moneyClientTextField = new javax.swing.JTextField();
         addMoneyEnsureButton = new javax.swing.JButton();
         addMoneyCancelButton = new javax.swing.JButton();
-        clientNameHintLabel = new javax.swing.JLabel();
+        moneyClientNameHintLabel = new javax.swing.JLabel();
         moneySerialNumberLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         moneySumLabel = new javax.swing.JLabel();
@@ -81,7 +99,7 @@ public class ReceiptUI extends javax.swing.JPanel {
         nameLabel2 = new javax.swing.JLabel();
         title1Label1 = new javax.swing.JLabel();
         clientLabel1 = new javax.swing.JLabel();
-        cashRecordAccountName = new javax.swing.JTextField();
+        cashRecordAccountNameTextField = new javax.swing.JTextField();
         addCashRecordEnsureButton = new javax.swing.JButton();
         addCashRecordCancelButton = new javax.swing.JButton();
         cashRecordAccountHintLabel = new javax.swing.JLabel();
@@ -112,8 +130,11 @@ public class ReceiptUI extends javax.swing.JPanel {
         typeComboBox = new javax.swing.JComboBox();
         findTextField = new javax.swing.JTextField();
 
-        addMoneyReceiptDialog.setLocation(new java.awt.Point(300, 400));
+        addMoneyReceiptDialog.setLocation(new java.awt.Point(300, 60));
         addMoneyReceiptDialog.setMinimumSize(new java.awt.Dimension(400, 188));
+        addMoneyReceiptDialog.setPreferredSize(new java.awt.Dimension(686, 630));
+        addMoneyReceiptDialog.setSize(new java.awt.Dimension(686, 630));
+        addMoneyReceiptDialog.setLocationRelativeTo(null);
 
         nameLabel.setFont(new java.awt.Font("KaiTi", 0, 24)); // NOI18N
         nameLabel.setText("添加收付款单");
@@ -140,6 +161,8 @@ public class ReceiptUI extends javax.swing.JPanel {
             }
         });
 
+        moneyClientNameHintLabel.setForeground(new java.awt.Color(255, 0, 0));
+
         moneySerialNumberLabel.setFont(title1Label.getFont());
 
         jLabel1.setFont(title1Label.getFont());
@@ -149,17 +172,13 @@ public class ReceiptUI extends javax.swing.JPanel {
 
         moneyItemTable.setModel(new demoui.financialui.FinancialReceiptItemTableModel(new ArrayList<FinancialReceiptLineItemVO>(),getItemCol(),getReceiptType()));
         jScrollPane2.setViewportView(moneyItemTable);
+        jScrollPane2.getViewport().setBackground(Color.WHITE);
 
         moneyAddItemButton.setFont(addMoneyEnsureButton.getFont());
         moneyAddItemButton.setText("添加条目");
         moneyAddItemButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 moneyAddItemButtonMousePressed(evt);
-            }
-        });
-        moneyAddItemButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moneyAddItemButtonActionPerformed(evt);
             }
         });
 
@@ -191,7 +210,7 @@ public class ReceiptUI extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(moneyClientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clientNameHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(moneyClientNameHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(addMoneyReceiptDialogLayout.createSequentialGroup()
                                 .addGroup(addMoneyReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(moneyAddItemButton)
@@ -221,7 +240,7 @@ public class ReceiptUI extends javax.swing.JPanel {
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(addMoneyReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clientNameHintLabel)
+                    .addComponent(moneyClientNameHintLabel)
                     .addComponent(moneySerialNumberLabel)
                     .addComponent(title1Label)
                     .addGroup(addMoneyReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -231,11 +250,11 @@ public class ReceiptUI extends javax.swing.JPanel {
                 .addGroup(addMoneyReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(moneySumLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(addMoneyReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(moneyDelItemButton)
                     .addComponent(moneyAddItemButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addMoneyReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,11 +262,17 @@ public class ReceiptUI extends javax.swing.JPanel {
                     .addComponent(addMoneyCancelButton)))
         );
 
-        addMoneyReceiptDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {clientNameHintLabel, moneyClientTextField});
+        addMoneyReceiptDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {moneyClientNameHintLabel, moneyClientTextField});
 
         addMoneyReceiptDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {moneySerialNumberLabel, title1Label});
 
         addMoneyReceiptDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, moneySumLabel});
+
+        addMoneyItemDialog.setLocation(new java.awt.Point(350, 200));
+        addMoneyItemDialog.setLocationByPlatform(true);
+        addMoneyItemDialog.setPreferredSize(new java.awt.Dimension(400, 238));
+        addMoneyItemDialog.setSize(new java.awt.Dimension(400, 238));
+        addMoneyItemDialog.setLocationRelativeTo(null);
 
         nameLabel1.setFont(new java.awt.Font("KaiTi", 0, 24)); // NOI18N
         nameLabel1.setText("添加条目");
@@ -277,6 +302,8 @@ public class ReceiptUI extends javax.swing.JPanel {
             }
         });
 
+        moneyItemSumHint.setForeground(new java.awt.Color(255, 0, 0));
+
         moneyItemAccountHintLabel.setFont(new java.awt.Font("KaiTi", 0, 16)); // NOI18N
         moneyItemAccountHintLabel.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -303,7 +330,7 @@ public class ReceiptUI extends javax.swing.JPanel {
                                     .addComponent(moneyItemAccountTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addMoneyItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(moneyItemSumHint, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(moneyItemSumHint, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                             .addComponent(moneyItemAccountHintLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(addMoneyItemDialogLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
@@ -349,8 +376,10 @@ public class ReceiptUI extends javax.swing.JPanel {
 
         addMoneyItemDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {itemAccountTitile, moneyItemAccountHintLabel});
 
-        addCashRecordReceiptDialog.setLocation(new java.awt.Point(300, 400));
-        addCashRecordReceiptDialog.setMinimumSize(new java.awt.Dimension(400, 188));
+        addCashRecordReceiptDialog.setLocation(new java.awt.Point(240, 60));
+        addCashRecordReceiptDialog.setMinimumSize(new java.awt.Dimension(686, 630));
+        addCashRecordReceiptDialog.setPreferredSize(new java.awt.Dimension(686, 630));
+        addCashRecordReceiptDialog.setLocationRelativeTo(null);
 
         nameLabel2.setFont(new java.awt.Font("KaiTi", 0, 24)); // NOI18N
         nameLabel2.setText("添加现金费用单");
@@ -361,9 +390,9 @@ public class ReceiptUI extends javax.swing.JPanel {
         clientLabel1.setFont(title1Label.getFont());
         clientLabel1.setText("账户名：");
 
-        cashRecordAccountName.addActionListener(new java.awt.event.ActionListener() {
+        cashRecordAccountNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cashRecordAccountNameActionPerformed(evt);
+                cashRecordAccountNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -399,6 +428,7 @@ public class ReceiptUI extends javax.swing.JPanel {
 
         cashRecordItemTable.setModel(new demoui.financialui.FinancialReceiptItemTableModel(new ArrayList<FinancialReceiptLineItemVO>(), getItemCol(), type));
         jScrollPane3.setViewportView(cashRecordItemTable);
+        jScrollPane3.getViewport().setBackground(Color.WHITE);
 
         cashRecordAddItemButton.setFont(addMoneyEnsureButton.getFont());
         cashRecordAddItemButton.setText("添加条目");
@@ -421,35 +451,26 @@ public class ReceiptUI extends javax.swing.JPanel {
         addCashRecordReceiptDialogLayout.setHorizontalGroup(
             addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
-                .addGap(233, 233, 233)
-                .addComponent(nameLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
                 .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
-                        .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
-                                .addGap(185, 185, 185)
-                                .addComponent(addCashRecordEnsureButton)
-                                .addGap(159, 159, 159)
-                                .addComponent(addCashRecordCancelButton))
-                            .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(185, 185, 185)
+                        .addComponent(addCashRecordEnsureButton)
+                        .addGap(159, 159, 159)
+                        .addComponent(addCashRecordCancelButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addCashRecordReceiptDialogLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title1Label1)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
                                 .addComponent(cashRecordSerialNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(clientLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cashRecordAccountName, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cashRecordAccountNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(clientNameHintLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,8 +481,16 @@ public class ReceiptUI extends javax.swing.JPanel {
                                     .addComponent(cashRecordSumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(110, 110, 110)
                                 .addComponent(cashRecordDelItemButton)))
-                        .addGap(104, 104, 104)))
+                        .addGap(157, 157, 157)))
                 .addContainerGap())
+            .addGroup(addCashRecordReceiptDialogLayout.createSequentialGroup()
+                .addGap(233, 233, 233)
+                .addComponent(nameLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addCashRecordReceiptDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addCashRecordReceiptDialogLayout.setVerticalGroup(
             addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,18 +505,18 @@ public class ReceiptUI extends javax.swing.JPanel {
                         .addComponent(cashRecordAccountHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(clientLabel1)
-                        .addComponent(cashRecordAccountName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cashRecordAccountNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cashRecordSerialNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(title1Label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(cashRecordSumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cashRecordDelItemButton)
                     .addComponent(cashRecordAddItemButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addCashRecordReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -498,6 +527,10 @@ public class ReceiptUI extends javax.swing.JPanel {
         addCashRecordReceiptDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cashRecordSerialNumberLabel, title1Label1});
 
         addCashRecordReceiptDialogLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cashRecordSumLabel, jLabel3});
+
+        addCashRecordItemDialog.setLocation(new java.awt.Point(350, 200));
+        addCashRecordItemDialog.setSize(new java.awt.Dimension(372, 238));
+        addCashRecordItemDialog.setLocationRelativeTo(null);
 
         nameLabel3.setFont(new java.awt.Font("KaiTi", 0, 24)); // NOI18N
         nameLabel3.setText("添加条目");
@@ -544,6 +577,8 @@ public class ReceiptUI extends javax.swing.JPanel {
                 addCashRecordItemCancelButtonMousePressed(evt);
             }
         });
+
+        cashRecordItemSumHint.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout addCashRecordItemDialogLayout = new javax.swing.GroupLayout(addCashRecordItemDialog.getContentPane());
         addCashRecordItemDialog.getContentPane().setLayout(addCashRecordItemDialogLayout);
@@ -638,11 +673,12 @@ public class ReceiptUI extends javax.swing.JPanel {
             }
         });
 
-        receiptTabel.setModel(new MyTableModel(new Vector(),getMoneyCol()));
-        receiptTabel.setColumnSelectionAllowed(true);
+        receiptTabel.setAutoCreateRowSorter(true);
+        receiptTabel.setModel(new MoneyReceiptTableModel(getMoneyData(),getMoneyCol()));
         receiptTabel.setPreferredSize(new java.awt.Dimension(660, 330));
         receiptTabel.setSize(new java.awt.Dimension(660, 330));
         jScrollPane1.setViewportView(receiptTabel);
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
         receiptTabel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         typeComboBox.setFont(addReceiptButton.getFont());
@@ -722,9 +758,11 @@ public class ReceiptUI extends javax.swing.JPanel {
             } catch (RemoteException ex) {
                 Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+            moneyItemTable.setModel(new FinancialReceiptItemTableModel(new ArrayList<FinancialReceiptLineItemVO>(), getItemCol(), type));
             addMoneyReceiptDialog.setVisible(true);
         }else{
             cashRecordBLService = ClientStart.getCashRecordBLService();
+            cashRecordItemTable.setModel(new FinancialReceiptItemTableModel(new ArrayList<FinancialReceiptLineItemVO>(), getItemCol(), type));
             try {
                 cashRecordSerialNumberLabel.setText(cashRecordBLService.getSerialNumber());
             } catch (RemoteException ex) {
@@ -737,31 +775,50 @@ public class ReceiptUI extends javax.swing.JPanel {
     private void addMoneyEnsureButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMoneyEnsureButtonMousePressed
 
         if(moneyClientTextField.getText().equals("")){
-            clientNameHintLabel.setText("输入不能为空");
+            moneyClientNameHintLabel.setText("输入不能为空");
             return;
         }else{
-            clientNameHintLabel.setText("");
+            moneyClientNameHintLabel.setText("");
         }
-
+        
+        ClientBLService clientBLService = ClientStart.getClientBLService();
         try {
+            if(clientBLService.findClientByNum(moneyClientTextField.getText()) == null){
+                moneyClientNameHintLabel.setText("该用户不存在");
+                return;
+            }else{
+                moneyClientNameHintLabel.setText("");
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ArrayList<MoneyLineItemVO> itemList = ((FinancialReceiptItemTableModel)moneyItemTable.getModel()).getMoneyList();
+        if(type == ReceiptType.Pay){
+            ((MoneyReceiptTableModel)receiptTabel.getModel()).addRow(new PayVO(moneyClientTextField.getText(), itemList,itemSum, moneySerialNumberLabel.getText(), userName));
+        }else{
+            ((MoneyReceiptTableModel)receiptTabel.getModel()).addRow(new ReceiveVO(moneyClientTextField.getText(), itemList,itemSum, moneySerialNumberLabel.getText(), userName));
+        }
+        
+        moneyBLService = ((FinancialReceiptItemTableModel)moneyItemTable.getModel()).getMoneyBLService();
+        try {
+            moneyBLService.setClient(moneyClientTextField.getText());
+            moneyBLService.setUser(userName);
             moneyBLService.finish();
         } catch (RemoteException ex) {
             Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        moneyClientTextField.setText("");
-        clientNameHintLabel.setText("");
         
-        Vector line = new Vector();
-        line.add(moneySerialNumberLabel.getText());
-        line.add(moneyClientTextField.getText());
-        line.add();//用户名
-        line.add(Double.parseDouble(moneySumLabel.getText()));
-        
-        ((MyTableModel)receiptTabel.getModel()).addRow(line);
+        clearAddMoneyReceipt();
         addMoneyReceiptDialog.setVisible(false);
         
     }//GEN-LAST:event_addMoneyEnsureButtonMousePressed
 
+    private void clearAddMoneyReceipt(){
+        moneyClientNameHintLabel.setText("");
+        moneyClientTextField.setText("");
+        moneySumLabel.setText("");
+    }
+    
     private void addMoneyItemEnsureButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMoneyItemEnsureButtonMousePressed
         double sum = 0;
          if(Tool.isNumeric(moneyItemSumTextField.getText())){
@@ -771,9 +828,8 @@ public class ReceiptUI extends javax.swing.JPanel {
             moneyItemSumHint.setText("请输入有效的数字");
             return;
         }
-        
-        AccountBLService accountBLService = ClientStart.getAccountBLService();
         AccountVO accountVO = null;
+        AccountBLService accountBLService = ClientStart.getAccountBLService();
         try {
             accountVO = accountBLService.findAccount(moneyItemAccountTextField.getText());
         } catch (RemoteException ex) {
@@ -789,27 +845,27 @@ public class ReceiptUI extends javax.swing.JPanel {
         }
         
         ((FinancialReceiptItemTableModel)moneyItemTable.getModel()).addRow(moneyItemAccountTextField.getText(), sum, moneyItemCommentTextField.getText());
-        try {
-            moneyBLService.addItem(new MoneyLineItemVO(moneyItemAccountTextField.getText(), sum, moneyItemCommentTextField.getText()));
-            moneySumLabel.setText(moneyBLService.getSum() + "");
-        } catch (RemoteException ex) {
-            Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       itemSum = ((FinancialReceiptItemTableModel)moneyItemTable.getModel()).getSum();
+       moneySumLabel.setText(itemSum + "");
+        clearAddMoneyItem();
         addMoneyItemDialog.setVisible(false);
     }//GEN-LAST:event_addMoneyItemEnsureButtonMousePressed
 
-    private void addMoneyItemCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMoneyItemCancelButtonMousePressed
+    private void clearAddMoneyItem(){
         moneyItemAccountTextField.setText("");
         moneyItemSumTextField.setText("");
         moneyItemCommentTextField.setText("");
         moneyItemAccountHintLabel.setText("");
         moneyItemSumHint.setText("");
+    }
+    
+    private void addMoneyItemCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMoneyItemCancelButtonMousePressed
+        clearAddMoneyItem();
         addMoneyItemDialog.setVisible(false);
     }//GEN-LAST:event_addMoneyItemCancelButtonMousePressed
 
     private void addMoneyCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMoneyCancelButtonMousePressed
-        clientNameHintLabel.setText("");
-        moneyClientTextField.setText("");
+        clearAddMoneyReceipt();
         addMoneyReceiptDialog.setVisible(false);
     }//GEN-LAST:event_addMoneyCancelButtonMousePressed
 
@@ -820,79 +876,104 @@ public class ReceiptUI extends javax.swing.JPanel {
     private void moneyDelItemButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moneyDelItemButtonMousePressed
         FinancialReceiptItemTableModel model = (FinancialReceiptItemTableModel)moneyItemTable.getModel();
         for(int row : moneyItemTable.getSelectedRows()){
+            row = moneyItemTable.convertRowIndexToModel(row);
             model.removeRow(row);
         }
+        
+        itemSum = model.getSum();
+        
+        moneySumLabel.setText(itemSum + "");
     }//GEN-LAST:event_moneyDelItemButtonMousePressed
-
-    private void moneyAddItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneyAddItemButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_moneyAddItemButtonActionPerformed
 
     private void typeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_typeComboBoxItemStateChanged
         if(evt.getStateChange() == ItemEvent.SELECTED){
            String type = (String)typeComboBox.getSelectedItem();
             switch(type){
-                case "收款单":this.type = ReceiptType.Receive;
-                receiptTabel.setModel(new MyTableModel(new Vector(), getMoneyCol()));
-                break;
-                case "付款单":this.type = ReceiptType.Pay;
-                receiptTabel.setModel(new MyTableModel(new Vector(), getMoneyCol()));
-                break;
-                case "现金费用单":this.type = ReceiptType.CashRecord;
-                receiptTabel.setModel(new MyTableModel(new Vector(), getCashRecordCol()));
-                break;
+                case "收款单":
+                    this.type = ReceiptType.Receive;
+                    moneyBLService = ClientStart.getMoneyBLService(this.type);
+                    receiptTabel.setModel(new MoneyReceiptTableModel(getMoneyData(),getMoneyCol()));
+                    break;
+                case "付款单":
+                    this.type = ReceiptType.Pay;
+                    moneyBLService = ClientStart.getMoneyBLService(this.type);
+                    receiptTabel.setModel(new MoneyReceiptTableModel(getMoneyData(), getMoneyCol()));
+                    break;
+                case "现金费用单":
+                    this.type = ReceiptType.CashRecord;
+                    moneyBLService = ClientStart.getMoneyBLService(this.type);
+                    receiptTabel.setModel(new CashRecordReceiptTableModel(getCashRecordData(), getCashRecordCol()));
+                    break;
             }
-            receiptTabel.setModel(new FinancialReceiptItemTableModel(new ArrayList<FinancialReceiptLineItemVO>(), getItemCol(), this.type));
         }
     }//GEN-LAST:event_typeComboBoxItemStateChanged
 
+    private ArrayList<MoneyVO> getMoneyData(){
+          try{
+              if(moneyBLService != null){
+                return moneyBLService.getList();
+              }else{
+                  return new ArrayList<MoneyVO>();
+              }
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     private void findAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findAccountButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_findAccountButtonActionPerformed
 
-    private void cashRecordAccountNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashRecordAccountNameActionPerformed
+    private void cashRecordAccountNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashRecordAccountNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cashRecordAccountNameActionPerformed
+    }//GEN-LAST:event_cashRecordAccountNameTextFieldActionPerformed
 
     private void addCashRecordEnsureButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCashRecordEnsureButtonMousePressed
-        if(cashRecordAccountName.getText().equals("")){
+        if(cashRecordAccountNameTextField.getText().equals("")){
             cashRecordAccountHintLabel.setText("输入不能为空");
             return;
         }else{
             AccountBLService accountBLService = ClientStart.getAccountBLService();
             try {
-                if(accountBLService.findAccount(cashRecordAccountName.getText()) != null){
-                    clientNameHintLabel.setText("不存在该账户");
+                if(accountBLService.findAccount(cashRecordAccountNameTextField.getText()) == null){
+                    cashRecordAccountHintLabel.setText("不存在该账户");
                     return;
                 }else{
-                    clientNameHintLabel.setText("");
+                    cashRecordAccountHintLabel.setText("");
                 }
             } catch (RemoteException ex) {
                 Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
+  
+        ArrayList<CashRecordLineItemVO> itemList = ((FinancialReceiptItemTableModel)cashRecordItemTable.getModel()).getCashRecordList();
+        ((CashRecordReceiptTableModel)receiptTabel.getModel()).addRow(new CashRecordVO(cashRecordAccountNameTextField.getText(), itemList, itemSum, cashRecordSerialNumberLabel.getText(),userName));
+        cashRecordBLService = ((FinancialReceiptItemTableModel)cashRecordItemTable.getModel()).getCashRecordBLService();
         try {
+            cashRecordBLService.setUser(userName);
+            cashRecordBLService.setAccount(cashRecordAccountNameTextField.getText());
             cashRecordBLService.finish();
         } catch (RemoteException ex) {
             Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        cashRecordAccountName.setText("");
-        cashRecordAccountHintLabel.setText("");
-        
-        Vector line = new Vector();
-        line.add(cashRecordSerialNumberLabel.getText());
-        line.add();//用户名
-        line.add(cashRecordAccountName.getText());
-        line.add(Double.parseDouble(cashRecordSumLabel.getText()));
-        
-        ((MyTableModel)receiptTabel.getModel()).addRow(line);
-        addMoneyReceiptDialog.setVisible(false);
+        clearAddCashRecordReceipt();
+        addCashRecordReceiptDialog.setVisible(false);
         
     }//GEN-LAST:event_addCashRecordEnsureButtonMousePressed
 
+    private void clearAddCashRecordReceipt(){
+        cashRecordAccountNameTextField.setText("");
+        cashRecordAccountHintLabel.setText("");
+        cashRecordSumLabel.setText("");
+    }
+    
     private void addCashRecordCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCashRecordCancelButtonMousePressed
-        // TODO add your handling code here:
+        clearAddCashRecordReceipt();
+        addCashRecordReceiptDialog.setVisible(false);
+        addCashRecordReceiptDialog.setVisible(false);
     }//GEN-LAST:event_addCashRecordCancelButtonMousePressed
 
     private void cashRecordAddItemButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashRecordAddItemButtonMousePressed
@@ -904,6 +985,8 @@ public class ReceiptUI extends javax.swing.JPanel {
         for(int row : cashRecordItemTable.getSelectedRows()){
             model.removeRow(row);
         }
+        itemSum = model.getSum();
+        cashRecordSumLabel.setText(itemSum + "");
     }//GEN-LAST:event_cashRecordDelItemButtonMousePressed
 
     private void cashRecordItemNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashRecordItemNameTextFieldActionPerformed
@@ -920,16 +1003,10 @@ public class ReceiptUI extends javax.swing.JPanel {
 
     private void addCashRecordItemEnsureButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCashRecordItemEnsureButtonMousePressed
         if(Tool.isNumeric(cashRecordItemSumTextField.getText())){
-            try {
-                MoneyLineItemVO moneyLineItemVO = new MoneyLineItemVO(moneyItemAccountTextField.getText(), Double.parseDouble(cashRecordItemSumTextField.getText()), cashRecordItemCommentTextField.getText());
-                moneyBLService.addItem(moneyLineItemVO);
-                ((FinancialReceiptItemTableModel)cashRecordItemTable.getModel()).addRow(moneyLineItemVO);
-            } catch (RemoteException ex) {
-                Logger.getLogger(ReceiptUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            cashRecordItemNameTextField.setText("");
-            cashRecordItemSumTextField.setText("");
-            cashRecordItemCommentTextField.setText("");
+            CashRecordLineItemVO cashRecordLineItemVO = new CashRecordLineItemVO(cashRecordItemNameTextField.getText(), Double.parseDouble(cashRecordItemSumTextField.getText()), cashRecordItemCommentTextField.getText());
+            ((FinancialReceiptItemTableModel)cashRecordItemTable.getModel()).addRow(cashRecordLineItemVO);
+            cashRecordSumLabel.setText(((FinancialReceiptItemTableModel)cashRecordItemTable.getModel()).getSum() + "");
+            clearCashRecordItem();
             addCashRecordItemDialog.setVisible(false);
         }else{
             cashRecordItemSumHint.setText("请输入有效的数字");
@@ -937,11 +1014,15 @@ public class ReceiptUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addCashRecordItemEnsureButtonMousePressed
 
+    public void clearCashRecordItem(){
+        cashRecordItemNameTextField.setText("");
+        cashRecordItemSumTextField.setText("");
+        cashRecordItemSumHint.setText("");
+        cashRecordItemCommentTextField.setText("");
+    }
+    
     private void addCashRecordItemCancelButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCashRecordItemCancelButtonMousePressed
-            cashRecordItemNameTextField.setText("");
-            cashRecordItemSumTextField.setText("");
-            cashRecordItemSumHint.setText("");
-            cashRecordItemCommentTextField.setText("");
+            clearCashRecordItem();
             addCashRecordItemDialog.setVisible(false);
     }//GEN-LAST:event_addCashRecordItemCancelButtonMousePressed
 
@@ -960,12 +1041,26 @@ public class ReceiptUI extends javax.swing.JPanel {
     }//GEN-LAST:event_findTextFieldFocusLost
 
     private void findAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_findAccountButtonMousePressed
-        if(type != ReceiptType.CashRecord){
+        int row = search(findTextField.getText());
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "未找到");
+            return;
+        }
+        row = receiptTabel.convertRowIndexToView(row);
+        receiptTabel.setRowSelectionInterval(row, row);
+    }//GEN-LAST:event_findAccountButtonMousePressed
+   
+    public int search(String arg){
+        int i;
+        TableModel model = receiptTabel.getModel();
+        for(i = 0;i < model.getRowCount();i++){
+            if(model.getValueAt(i, 0).equals(arg)){
+                return i;
+            }
             
         }
-    }//GEN-LAST:event_findAccountButtonMousePressed
-    ReceiptType type = ReceiptType.Receive;
-   
+        return -1;
+    }
     
     public ArrayList getItemCol(){
         ArrayList returnList = new ArrayList();
@@ -980,8 +1075,8 @@ public class ReceiptUI extends javax.swing.JPanel {
         return  returnList;
     }
     
-    public Vector getMoneyCol(){
-        Vector returnList = new Vector();
+    public ArrayList getMoneyCol(){
+        ArrayList returnList = new ArrayList();
         returnList.add("单据编号");
         returnList.add("客户");
         returnList.add("操作员");
@@ -989,13 +1084,29 @@ public class ReceiptUI extends javax.swing.JPanel {
         return returnList;
     }
     
-    public Vector getCashRecordCol(){
-        Vector returnList = new Vector();
+    public ArrayList getCashRecordCol(){
+        ArrayList returnList = new ArrayList();
         returnList.add("单据编号");
         returnList.add("操作员");
         returnList.add("银行帐户");
         returnList.add("总额");
         return returnList;
+    }
+
+    public ArrayList<CashRecordVO> getCashRecordData(){
+             try{
+            ServerInterface serverInterface = ClientStart.server;
+            if(serverInterface != null){
+                CashRecordBLService cashRecordBLService = serverInterface.getCashRecordBLService();
+                return cashRecordBLService.getList();
+            }else{
+                return new ArrayList<CashRecordVO>();
+            }
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public ReceiptType getReceiptType() {
@@ -1018,7 +1129,7 @@ public class ReceiptUI extends javax.swing.JPanel {
     private javax.swing.JDialog addMoneyReceiptDialog;
     private javax.swing.JButton addReceiptButton;
     private javax.swing.JLabel cashRecordAccountHintLabel;
-    private javax.swing.JTextField cashRecordAccountName;
+    private javax.swing.JTextField cashRecordAccountNameTextField;
     private javax.swing.JButton cashRecordAddItemButton;
     private javax.swing.JButton cashRecordDelItemButton;
     private javax.swing.JTextField cashRecordItemCommentTextField;
@@ -1029,7 +1140,6 @@ public class ReceiptUI extends javax.swing.JPanel {
     private javax.swing.JLabel cashRecordSerialNumberLabel;
     private javax.swing.JLabel cashRecordSumLabel;
     private javax.swing.JLabel clientLabel1;
-    private javax.swing.JLabel clientNameHintLabel;
     private javax.swing.JLabel clientNameHintLabel1;
     private javax.swing.JButton findAccountButton;
     private javax.swing.JTextField findTextField;
@@ -1046,6 +1156,7 @@ public class ReceiptUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton moneyAddItemButton;
     private javax.swing.JLabel moneyClientLabel;
+    private javax.swing.JLabel moneyClientNameHintLabel;
     private javax.swing.JTextField moneyClientTextField;
     private javax.swing.JButton moneyDelItemButton;
     private javax.swing.JLabel moneyItemAccountHintLabel;

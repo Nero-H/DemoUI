@@ -1,11 +1,15 @@
 package vo;
 
 import java.rmi.RemoteException;
+
 import utility.MyTreeNode;
 
 public class GoodsVO extends MyTreeNode{
 	
-	String goodsNumber;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String goodsName;
 	String goodsModelNumber;
 	int stockNumber;
@@ -19,19 +23,13 @@ public class GoodsVO extends MyTreeNode{
 	
 	public GoodsVO(String goodsNumber, String goodsName,
 			String goodsModelNumber, double inPrice, double retailPrice) throws RemoteException {
-		super(goodsName);
-		this.goodsNumber = goodsNumber;
+		super(goodsNumber);
 		this.goodsName = goodsName;
 		this.goodsModelNumber = goodsModelNumber;
 		this.inPrice = inPrice;
 		this.retailPrice = retailPrice;
 	}
-	public String getGoodsNumber() {
-		return goodsNumber;
-	}
-	public void setGoodsNumber(String goodsNumber) {
-		this.goodsNumber = goodsNumber;
-	}
+
 	public String getGoodsName() {
 		return goodsName;
 	}
@@ -75,5 +73,8 @@ public class GoodsVO extends MyTreeNode{
 		this.recentRetailPrice = recentRetailPrice;
 	}
 	
-
+	public String toString(){
+		return goodsName;
+	}
+	
 }

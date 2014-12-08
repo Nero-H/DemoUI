@@ -16,6 +16,7 @@ import businesslogicservice.financialblservice.MoneyBLService;
 import businesslogicservice.importblservice.ImportBLService;
 import businesslogicservice.saleblservice.SalesBLService;
 import businesslogicservice.stockblservice.GoodsManageBLService;
+import businesslogicservice.userblservice.LoginBLService;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;

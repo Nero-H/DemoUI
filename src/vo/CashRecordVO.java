@@ -1,9 +1,14 @@
 package vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //用于BL层向UI层传搜索结果
-public class CashRecordVO {
+public class CashRecordVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String accountName;
 	ArrayList<CashRecordLineItemVO> list;
 	double sum;

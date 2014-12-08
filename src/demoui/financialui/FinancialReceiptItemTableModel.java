@@ -13,12 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import server.ClientStart;
 import utility.MyAbstractTableModel;
-import vo.AccountVO;
 import vo.CashRecordLineItemVO;
 import vo.FinancialReceiptLineItemVO;
 import vo.MoneyLineItemVO;
-import vo.MoneyVO;
-import vo.PayVO;
 import vo.ReceiptType;
 
 /**
@@ -28,9 +25,18 @@ import vo.ReceiptType;
 public class FinancialReceiptItemTableModel extends MyAbstractTableModel<FinancialReceiptLineItemVO>{    
 
     ReceiptType type;
+    MoneyBLService moneyBLService;
+    CashRecordBLService cashRecordBLService;
+    double itemSum;
     public FinancialReceiptItemTableModel(ArrayList<FinancialReceiptLineItemVO> data, ArrayList columnNames,ReceiptType type) {
         super(data, columnNames);
         this.type = type;
+        if(type != ReceiptType.CashRecord){
+            moneyBLService = ClientStart.getMoneyBLService(type);
+        }else{
+            cashRecordBLService = ClientStart.getCashRecordBLService();
+        }
+        itemSum = 0;
     }
 
     @Override
@@ -38,11 +44,11 @@ public class FinancialReceiptItemTableModel extends MyAbstractTableModel<Financi
         try {
             dataList.add(row,rowData);
             if(type != ReceiptType.CashRecord){
-                MoneyBLService moneyBLService = ClientStart.getMoneyBLService(type);
                 moneyBLService.addItem((MoneyLineItemVO)rowData); 
+                itemSum += ((MoneyLineItemVO)rowData).getSum();
             }else{
-                CashRecordBLService cashRecordBLService = ClientStart.getCashRecordBLService();
                 cashRecordBLService.addItem((CashRecordLineItemVO)rowData);
+                itemSum += ((CashRecordLineItemVO)rowData).getSum();
             }
             fireTableRowsInserted(row, row);
         } catch (RemoteException ex) {
@@ -50,6 +56,10 @@ public class FinancialReceiptItemTableModel extends MyAbstractTableModel<Financi
         }
     }
 
+    public double getSum(){
+        return itemSum;
+    }
+    
     public void addRow(String name,double balance,String comment){
         if(type != ReceiptType.CashRecord){
             addRow(new MoneyLineItemVO(name, balance, comment));
@@ -60,15 +70,16 @@ public class FinancialReceiptItemTableModel extends MyAbstractTableModel<Financi
 
     @Override
     public void removeRow(int row) {
+        FinancialReceiptLineItemVO vo = dataList.remove(row);
         if(type != ReceiptType.CashRecord){
-                MoneyBLService moneyBLService = ClientStart.getMoneyBLService(type);
+            itemSum -= ((MoneyLineItemVO)vo).getSum();
             try {
                 moneyBLService.delItem(row);
             } catch (RemoteException ex) {
                 Logger.getLogger(FinancialReceiptItemTableModel.class.getName()).log(Level.SEVERE, null, ex);
             }
             }else{
-                CashRecordBLService cashRecordBLService = ClientStart.getCashRecordBLService();
+            itemSum -= ((CashRecordLineItemVO)vo).getSum();
             try {
                 cashRecordBLService.delItem(row);
             } catch (RemoteException ex) {
@@ -87,7 +98,6 @@ public class FinancialReceiptItemTableModel extends MyAbstractTableModel<Financi
                  case 1: moneyLineItemVO.setSum((Double)aValue);break;
                  case 2: moneyLineItemVO.setComment((String)aValue);break;
              }
-             MoneyBLService moneyBLService = ClientStart.getMoneyBLService(type);
              try {
                  moneyBLService.updateItem(aValue, row, column);
              } catch (RemoteException ex) {
@@ -101,7 +111,6 @@ public class FinancialReceiptItemTableModel extends MyAbstractTableModel<Financi
                     case 1: cashRecordLineItemVO.setSum((Double)aValue);
                     case 2: cashRecordLineItemVO.setComment((String)aValue);
                 }
-                CashRecordBLService cashRecordBLService = ClientStart.getCashRecordBLService();
              try {
                  cashRecordBLService.updateItem(aValue, row, column);
              } catch (RemoteException ex) {
@@ -130,6 +139,37 @@ public class FinancialReceiptItemTableModel extends MyAbstractTableModel<Financi
         return null;
     }
     
+    public MoneyBLService getMoneyBLService(){
+        return moneyBLService;
+    }
+    
+    public CashRecordBLService getCashRecordBLService(){
+        return cashRecordBLService;
+    }
   
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        if(columnIndex == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public ArrayList<MoneyLineItemVO> getMoneyList(){
+        ArrayList<MoneyLineItemVO> moneyList = new ArrayList<MoneyLineItemVO>();
+        for(FinancialReceiptLineItemVO vo : dataList){
+            moneyList.add((MoneyLineItemVO)vo);
+        }
+        return moneyList;
+    }
+    
+    public ArrayList<CashRecordLineItemVO> getCashRecordList(){
+        ArrayList<CashRecordLineItemVO> moneyList = new ArrayList<CashRecordLineItemVO>();
+        for(FinancialReceiptLineItemVO vo : dataList){
+            moneyList.add((CashRecordLineItemVO)vo);
+        }
+        return moneyList;
+    }
+    
     
 }

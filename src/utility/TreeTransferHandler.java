@@ -154,7 +154,6 @@ public class TreeTransferHandler extends TransferHandler {
 			// Remove nodes saved in nodesToRemove in createTransferable.
 			for (int i = 0; i < nodesToRemove.length; i++) {
 				model.removeNodeFromExparent(nodesToRemove[i]);
-				((MyTreeNode)nodesToRemove[i].getParent()).sort();
 				model.nodeStructureChanged((MyTreeNode)nodesToRemove[i].getParent());
 			}
                     try {

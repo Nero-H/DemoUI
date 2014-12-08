@@ -11,6 +11,14 @@ public class CustomerDiscountPromotionVO extends PromotionVO{
 	double discount;
 	PromotionType type=PromotionType.CustomerDiscount;
 
+	public PromotionType getType() {
+		return type;
+	}
+
+	public void setType(PromotionType type) {
+		this.type = type;
+	}
+
 	public Date getStartDate() {
 		return startDate;
 	}

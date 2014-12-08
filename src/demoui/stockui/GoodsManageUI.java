@@ -84,7 +84,6 @@ public class GoodsManageUI extends javax.swing.JPanel {
         goodsOutPriceLabel = new javax.swing.JLabel();
         goodsRecentOutPriceLabel = new javax.swing.JLabel();
 
-        addSortDialog.setPreferredSize(new java.awt.Dimension(309, 120));
         addSortDialog.setSize(new java.awt.Dimension(309, 120));
 
         jLabel1.setText("商品分类名：");
@@ -231,6 +230,7 @@ public class GoodsManageUI extends javax.swing.JPanel {
         goodsTree.setDragEnabled(true);
         goodsTree.setDropMode(javax.swing.DropMode.ON_OR_INSERT);
         goodsTree.setEditable(true);
+        goodsTree.setInvokesStopCellEditing(true);
         goodsTree.setRootVisible(false);
         goodsTree.setShowsRootHandles(true);
         goodsTree.putClientProperty("JTree.lineStyle", "Angled");
@@ -348,7 +348,7 @@ public class GoodsManageUI extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(571, 571, 571)
                         .addComponent(nameLabel1)))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {goodsInPriceLabel, goodsModelLabel, goodsNameLabel, goodsNumberLabel, goodsOutPriceLabel, goodsRecentInPriceLabel, goodsRecentOutPriceLabel, goodsStockNumberLabel});
@@ -484,6 +484,10 @@ public class GoodsManageUI extends javax.swing.JPanel {
             boolean shouldBeVisible) {
         
         MyTreeNode childNode = (MyTreeNode) child;
+       
+        if(parent == null){
+            parent = (MyTreeNode)goodsTree.getModel().getRoot();
+        }
         
         if((parent.getChildCount() == 0)
                 || (parent.getChildAt(0).getAllowsChildren() == childNode.getAllowsChildren())){
@@ -505,6 +509,7 @@ public class GoodsManageUI extends javax.swing.JPanel {
     }
     
     public MyTreeNode getRoot(){
+        ClientStart.main();
         ServerInterface serverInterface = ClientStart.server;
         if(serverInterface != null){
             try {

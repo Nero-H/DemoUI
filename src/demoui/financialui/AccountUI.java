@@ -5,11 +5,13 @@
  */
 package demoui.financialui;
 import businesslogicservice.financialblservice.AccountBLService;
+import java.awt.Color;
 import java.awt.Font;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import server.ClientStart;
 import server.ServerInterface;
 import utility.Tool;
@@ -24,6 +26,7 @@ public class AccountUI extends javax.swing.JPanel {
      * Creates new form AccountUI
      */
     public AccountUI() {
+        ClientStart.main();
         initComponents();
     }
 
@@ -60,6 +63,7 @@ public class AccountUI extends javax.swing.JPanel {
         addAccountDialog.setLocation(new java.awt.Point(200, 250));
         addAccountDialog.setMinimumSize(new java.awt.Dimension(400, 200));
         addAccountDialog.setSize(new java.awt.Dimension(400, 220));
+        addAccountDialog.setLocationRelativeTo(null);
 
         nameLabel.setFont(Tool.getTitleFont());
         nameLabel.setText("添加账户");
@@ -190,6 +194,7 @@ public class AccountUI extends javax.swing.JPanel {
         accountTabel.setPreferredSize(new java.awt.Dimension(660, 330));
         accountTabel.setSize(new java.awt.Dimension(660, 330));
         jScrollPane1.setViewportView(accountTabel);
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
         accountTabel.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -275,7 +280,7 @@ public class AccountUI extends javax.swing.JPanel {
     private void delAccountButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delAccountButtonMousePressed
         int rows[] = accountTabel.getSelectedRows();
         for(int row : rows){
-            ((AccountTableModel)accountTabel.getModel()).removeRow(row);
+            ((AccountTableModel)accountTabel.getModel()).removeRow(accountTabel.convertRowIndexToModel(row));
         }
     }//GEN-LAST:event_delAccountButtonMousePressed
 
@@ -288,11 +293,13 @@ public class AccountUI extends javax.swing.JPanel {
         index = accountTabel.convertRowIndexToView(index);
         if(index != -1){
             accountTabel.setRowSelectionInterval(index, index);
+        }else{
+            JOptionPane.showMessageDialog(this, "未找到");
+            return;
         }
     }//GEN-LAST:event_findAccountButtonMousePressed
 
     private ArrayList<AccountVO> getData(){
-        ClientStart.main();
         try{
             ServerInterface serverInterface = ClientStart.server;
             if(serverInterface != null){

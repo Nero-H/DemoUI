@@ -1,6 +1,12 @@
 package vo;
 
-public class PayVOLineItem {
+import java.io.Serializable;
+
+public class PayVOLineItem implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	AccountVO account;
 	double money;
 	String comment;

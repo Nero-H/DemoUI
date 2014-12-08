@@ -1,9 +1,12 @@
 package vo;
 
+import java.util.Date;
+
 public class PromotionVO {
 
 
 	PromotionType type;
+
 
     String username;
 	
@@ -19,9 +22,13 @@ public class PromotionVO {
 		return type;
 	}
 
-	public void setType(PromotionType type) {
-		this.type = type;
+	
+	public Date getStartDate(){
+		return null;
 	}
 	
+	public Date getEndDate(){
+		return null;
+	}
 	
 }

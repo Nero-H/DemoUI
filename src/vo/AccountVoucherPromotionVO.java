@@ -1,12 +1,19 @@
 package vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 public class AccountVoucherPromotionVO extends PromotionVO {
 	Date startDate;
 	Date endDate;
 	double account;
+	double voucher;
+	PromotionType type=PromotionType.AccountVoucher;
+	
+	public AccountVoucherPromotionVO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public double getVoucher() {
 		return voucher;
 	}
@@ -24,13 +31,6 @@ public class AccountVoucherPromotionVO extends PromotionVO {
 	}
 
 
-
-	double voucher;
-	PromotionType type=PromotionType.AccountVoucher;
-
-	public AccountVoucherPromotionVO() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public Date getStartDate() {
 		return startDate;

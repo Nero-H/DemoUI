@@ -2,8 +2,6 @@ package businesslogicservice.userblservice;
 
 import java.rmi.RemoteException;
 
-import vo.UserIdentity;
-import vo.UserVO;
 
 public interface LoginBLService {
 

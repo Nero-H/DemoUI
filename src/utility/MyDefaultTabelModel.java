@@ -6,6 +6,7 @@
 package utility;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
@@ -16,7 +17,7 @@ public abstract class MyDefaultTabelModel<T> extends MyAbstractTableModel<T>{
     public MyDefaultTabelModel(ArrayList<T> data, ArrayList columnNames) {
         super(data, columnNames);
     }
-
+    
     @Override
     public void insertRow(int row, T rowData) {
         dataList.add(rowData);

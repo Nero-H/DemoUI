@@ -1,6 +1,12 @@
 package vo;
 
-public class UpdateAccountVO {
+import java.io.Serializable;
+
+public class UpdateAccountVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String oldName;
 	String newName;
 	

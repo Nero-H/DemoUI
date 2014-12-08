@@ -13,6 +13,7 @@ public class CustomerGiftPromotionVO extends PromotionVO {
 	ArrayList<GiftVO> gifts=new ArrayList<GiftVO>();
 	PromotionType type=PromotionType.CustomerGift;
 	
+	
 	public CustomerGiftPromotionVO() {
 		// TODO Auto-generated constructor stub
 	}

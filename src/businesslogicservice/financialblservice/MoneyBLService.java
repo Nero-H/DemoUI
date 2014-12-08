@@ -2,15 +2,13 @@ package businesslogicservice.financialblservice;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.rmi.Remote;
 
 import utility.TimePeriod;
 import vo.MoneyLineItemVO;
 import vo.MoneyVO;
-import vo.PayVO;
-import vo.ReceiptType;
-import vo.ReceiveVO;
 
-public interface MoneyBLService {
+public interface MoneyBLService extends Remote{
 	public boolean addItem(MoneyLineItemVO vo) throws RemoteException;
 	
 	public boolean delItem(int row) throws RemoteException;
@@ -20,6 +18,8 @@ public interface MoneyBLService {
 	public String getSerialNumber() throws RemoteException;
 	
 	public boolean setClient(String clientId) throws RemoteException;
+	
+	public boolean setUser(String userName) throws RemoteException;
 	
 	public String getUser() throws RemoteException;
 	

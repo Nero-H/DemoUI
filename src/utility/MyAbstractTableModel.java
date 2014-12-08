@@ -259,7 +259,7 @@ public abstract class MyAbstractTableModel<T> extends AbstractTableModel impleme
      * @see #setValueAt
      */
     public boolean isCellEditable(int row, int column) {
-        return true;
+        return false;
     }
 
     /**

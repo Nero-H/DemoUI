@@ -1,6 +1,12 @@
 package vo;
 
-public class MoneyLineItemVO implements FinancialReceiptLineItemVO{
+import java.io.Serializable;
+
+public class MoneyLineItemVO implements FinancialReceiptLineItemVO,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String accountId;
 	double sum;
 	String comment;

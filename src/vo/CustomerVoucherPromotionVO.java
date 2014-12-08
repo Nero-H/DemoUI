@@ -11,6 +11,14 @@ public class CustomerVoucherPromotionVO extends PromotionVO{
 	double voucher;
 	PromotionType type=PromotionType.CustomerVoucher;
 	
+	public PromotionType getType() {
+		return type;
+	}
+
+	public void setType(PromotionType type) {
+		this.type = type;
+	}
+
 	public CustomerVoucherPromotionVO() {
 		// TODO Auto-generated constructor stub
 	}

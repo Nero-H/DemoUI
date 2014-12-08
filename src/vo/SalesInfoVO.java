@@ -11,7 +11,7 @@ public class SalesInfoVO implements Serializable{
 	String salesman;	//业务员
 	String storehouse;	//仓库
 //	double diccount;	//折让
-	double voucher;//代金券金额
+	double voucher;//使用的代金券金额
 	String notes;		//备注
 	
 	

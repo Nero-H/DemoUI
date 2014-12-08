@@ -241,12 +241,15 @@ public class MyTreeModel implements Serializable, TreeModel {
 	 */
 	public void insertNodeInto(MyTreeNode newChild, MyTreeNode parent, int index) {
 		parent.insert(newChild, index);
-
+                
 		int[] newIndexs = new int[1];
 
 		newIndexs[0] = index;
 		nodesWereInserted(parent, newIndexs);
-	}
+                parent.sort();
+                nodeStructureChanged(parent);
+
+        }
 
 	/**
 	 * Message this to remove node from its parent. This will message

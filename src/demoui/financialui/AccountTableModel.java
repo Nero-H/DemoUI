@@ -98,4 +98,12 @@ public class AccountTableModel extends MyAbstractTableModel<AccountVO>{
         return -1;
     }
     
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        if(columnIndex == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
